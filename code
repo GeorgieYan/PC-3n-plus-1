@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    int a, b;
+
+    while(scanf("%d %d", &a, &b) != EOF){
+        printf("%d %d %d\n", a, b, max(a, b));
+    }
+
+    return 0;
+}
+
+int cycle(int x){
+    int num_cycle = 1;
+
+    while(x != 1){
+        if(x % 2 == 0){
+            x = x / 2;
+        }
+        else{
+            x = x*3 + 1;
+        }
+        num_cycle++;
+    }
+
+    return num_cycle;
+}
+
+int max(int a, int b){
+    int max = 0;
+
+    if(a > b){
+        int c = a;
+        a = b;
+        b = c;
+    }
+
+    for(a = a; a <= b; a++){
+        int a_size = cycle(a);
+        if (a_size > max) {
+            max = a_size;
+        }
+    }
+
+    return max;
+}
